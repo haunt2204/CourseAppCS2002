@@ -1,10 +1,27 @@
 from django import forms
 from django.contrib import admin
+from django.template.response import TemplateResponse
+from django.urls import path
 from django.utils.html import mark_safe
 from .models import Category, Course, Tag, Lesson
 from django.contrib.auth.models import Permission
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from .dao import count_course_by_cate
 
+
+class CourseAppAdminSite(admin.AdminSite):
+    site_header = "KHÓA HỌC TRỰC TUYẾN"
+
+    def get_urls(self):
+        return [
+                   path('course-stats/', self.stats_view)
+               ] + super().get_urls()
+
+    def stats_view(self, request):
+        stats = count_course_by_cate()
+        return TemplateResponse(request, 'admin/stats_view.html',{
+            'stats': stats
+        })
 
 # Register your models here.
 class CourseTagInlineAdmin(admin.TabularInline):
@@ -38,8 +55,11 @@ class CourseAdmin(admin.ModelAdmin):
         css = {
             'all': ('/static/css/style.css',)
         }
-admin.site.register(Category,CategoryAdmin)
-admin.site.register(Course, CourseAdmin)
-admin.site.register(Permission)
-admin.site.register(Tag)
-admin.site.register(Lesson)
+
+admin_site = CourseAppAdminSite(name="myapp")
+
+admin_site.register(Category,CategoryAdmin)
+admin_site.register(Course, CourseAdmin)
+admin_site.register(Permission)
+admin_site.register(Tag)
+admin_site.register(Lesson)

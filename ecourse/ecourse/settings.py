@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'debug_toolbar',
     'courses.apps.CourseConfig',
+    'rest_framework',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
