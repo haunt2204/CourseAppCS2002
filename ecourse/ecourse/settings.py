@@ -43,9 +43,12 @@ INSTALLED_APPS = [
     'courses.apps.CourseConfig',
     'rest_framework',
     'drf_yasg',
+    'corsheaders',
+    'oauth2_provider'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -55,6 +58,16 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware'
 ]
+
+import cloudinary
+
+cloudinary.config(
+    cloud_name="dy1unykph",
+    api_key="238791983534257",
+    api_secret="_J2MkfDJ1DwRe1uAn5TKozXup0U"
+)
+
+CORS_ALLOW_ALL_ORIGINS = True
 STATIC_URL = "static/"
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -80,7 +93,14 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ecourse.wsgi.application'
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    )
+}
 
+CLIENT_ID = 'OdSmQCEefrRksld1o8pRTeGWAY0Md6wTPD37MTeu'
+CLIENT_SECRET = 'Dbl6MLOdb5b5dTqE32qnmdRJmPImJS8bUX5vNVPvIqn75mwi49a6GvhFQqvVKDcRqXBQ9ag6rwEmFWJg1XvVMGJjenplandHqJc5hyhJDNmjA5nC2SwmHpvWOYhbhhT0'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
