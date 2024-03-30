@@ -99,8 +99,8 @@ REST_FRAMEWORK = {
     )
 }
 
-CLIENT_ID = 'OdSmQCEefrRksld1o8pRTeGWAY0Md6wTPD37MTeu'
-CLIENT_SECRET = 'Dbl6MLOdb5b5dTqE32qnmdRJmPImJS8bUX5vNVPvIqn75mwi49a6GvhFQqvVKDcRqXBQ9ag6rwEmFWJg1XvVMGJjenplandHqJc5hyhJDNmjA5nC2SwmHpvWOYhbhhT0'
+CLIENT_ID = '9yj0RL1361cHXPNXxVsLGR1RVlX44eSgVOGBniU0'
+CLIENT_SECRET = 'mwPekYT9AxrWkvMU2pIWxhQVmyfTBKh9wbd01mxDPPjJy4HttjEiBoBMFCL8uTijrnqs0NwXINxAspV4iXU85VmcWLWFyusT04QuhSYN4G8jeyUNzDApXtXXLfn61Lb4'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -158,3 +158,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+OAUTH2_PROVIDER = {
+    'OAUTH2_BACKEND_CLASS': 'oauth2_provider.oauth2_backends.JSONOAuthLibCore'
+}
